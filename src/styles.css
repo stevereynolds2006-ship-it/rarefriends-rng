@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-background: #ffffff;
+  --color-foreground: #121314;
+  --color-card: #ffffff;
+  --color-subtle: #f3f3f1;
+  --color-muted: #5c5e5a;
+  --color-line: #e4e4e0;
+  --color-ok: #1f6b45;
+  --color-danger: #9a3b32;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+@layer base {
+  :root {
+    --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-quick: 150ms;
+    --motion-fast: 250ms;
+    --motion-y-base: 8px;
+    --motion-blur-sm: 2px;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-y-base));
+    filter: blur(var(--motion-blur-sm));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise var(--motion-fast) var(--ease-smooth-out);
+  }
+}
